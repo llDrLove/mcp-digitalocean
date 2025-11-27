@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/digitalocean/godo"
+	"github.com/google/uuid"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/stretchr/testify/require"
 )
@@ -19,7 +20,7 @@ func TestCreateCluster(t *testing.T) {
 	defer c.Close()
 
 	create := godo.KubernetesClusterCreateRequest{
-		Name:        "mcp-test-cluster",
+		Name:        uuid.New().String(),
 		RegionSlug:  "sfo3",
 		VersionSlug: "latest",
 		NodePools: []*godo.KubernetesNodePoolCreateRequest{
