@@ -25,7 +25,7 @@ func TestCreateCluster(t *testing.T) {
 		NodePools: []*godo.KubernetesNodePoolCreateRequest{
 			{
 				Name:     "mcp-node-pool-1",
-				Size:     "s-4vcpu-8gb",
+				Size:     "s-1vcpu-2gb",
 				Count:    1,
 				MinNodes: 1,
 				MaxNodes: 1,
@@ -62,7 +62,6 @@ func TestCreateCluster(t *testing.T) {
 	})
 	require.NoError(t, err)
 	require.False(t, resp.IsError)
-	doksClusterJSON = ""
 	doksClusterJSON = resp.Content[0].(mcp.TextContent).Text
 	err = json.Unmarshal([]byte(doksClusterJSON), &doksCluster)
 	require.NoError(t, err)
